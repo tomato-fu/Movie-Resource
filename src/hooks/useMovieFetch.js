@@ -30,7 +30,7 @@ export const useMovieFetch = (movieID) => {
       }
     };
 
-    const sesstionState = isPersistedState("movieState");
+    const sesstionState = isPersistedState(movieID);
     if (sesstionState) {
       console.log("Grabbing from sesstion");
       setState(sesstionState);
@@ -41,7 +41,7 @@ export const useMovieFetch = (movieID) => {
 
   useEffect(() => {
     console.log("Store into Sotorage");
-    sessionStorage.setItem("movieState", JSON.stringify(state));
+    sessionStorage.setItem(movieID, JSON.stringify(state));
   }, [movieID, state]);
   return { state, loading, error };
 };
